@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiggle Wing Software</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:   #00B4D8;
+      --coral:  #FF6B6B;
+      --yellow: #FFD60A;
+      --purple: #7B2FBE;
+      --dark:   #1A1A2E;
+      --light:  #F4F7FB;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    /* ── Header ── */
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .logo-icon { font-size: 2rem; }
+
+    .logo span.light { font-weight: 400; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #00B4D8 0%, #7B2FBE 100%);
+      color: white;
+      padding: 5rem 2rem 4.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      max-width: 580px;
+      margin: 0 auto 2rem;
+      opacity: 0.92;
+      line-height: 1.6;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.45rem 1.4rem;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Apps Section ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #666;
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.25rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+    }
+
+    .card.c-teal::before   { background: var(--teal); }
+    .card.c-coral::before  { background: var(--coral); }
+    .card.c-yellow::before { background: var(--yellow); }
+    .card.c-purple::before { background: var(--purple); }
+
+    .card-icon { font-size: 3rem; margin-bottom: 0.9rem; }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    .badge-soon {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #f0f0f4;
+      color: #999;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.85rem;
+      border-radius: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── About ── */
+    .about {
+      background: var(--dark);
+      color: white;
+      padding: 4.5rem 2rem;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.75;
+      font-size: 1.05rem;
+      opacity: 0.82;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: white;
+      border-top: 1px solid #e8eaed;
+      padding: 1.75rem 2rem;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.88rem;
+    }
+
+    footer strong { color: var(--dark); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#">
+      <span class="logo-icon">🪶</span>
+      Wiggle Wing <span class="light">&nbsp;Software</span>
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1>Apps That Move<br>With Your Life</h1>
+    <p>An indie mobile studio building apps for everyday moments — on the golf course, at the grocery store, around the kitchen table, and beyond.</p>
+    <span class="pill">Coming to the App Store</span>
+  </section>
+
+  <div class="section">
+    <h2 class="section-title">What We're Building</h2>
+    <p class="section-sub">Each app starts with a real problem and ends with something you'll actually want to use.</p>
+
+    <div class="apps-grid">
+
+      <div class="card c-teal">
+        <div class="card-icon">🧩</div>
+        <h3>Number Puzzles</h3>
+        <p>Sharpen your mind with satisfying number challenges designed for every skill level. Brain food — no fork required.</p>
+        <span class="badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="card c-coral">
+        <div class="card-icon">🏌️</div>
+        <h3>Golf Glove Scanner</h3>
+        <p>Scan and track your golf gloves so you always know what's in your bag — and when it's time for a fresh pair.</p>
+        <span class="badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="card c-yellow">
+        <div class="card-icon">🌾</div>
+        <h3>Gluten Scan</h3>
+        <p>Point, scan, and know. Quickly surface gluten-containing ingredients in packaged foods before they end up in the cart.</p>
+        <span class="badge-soon">Coming Soon</span>
+      </div>
+
+      <div class="card c-purple">
+        <div class="card-icon">⛳</div>
+        <h3>Tee Time Scheduler</h3>
+        <p>Book, organize, and share tee times with your crew — no group texts required. Just show up and play.</p>
+        <span class="badge-soon">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="about">
+    <h2>Why Wiggle Wing?</h2>
+    <p>The name comes from two very important little people. Wiggle Wing Software is a one-person indie studio with one mission: build apps that earn a permanent spot on your home screen. Every app is built with care, kept focused, and made to be genuinely useful — no fluff, no fuss.</p>
+  </div>
+
+  <footer>
+    <strong>Wiggle Wing Software, LLC</strong> &mdash; &copy; 2026. All rights reserved.
+  </footer>
+
+</body>
+</html>
