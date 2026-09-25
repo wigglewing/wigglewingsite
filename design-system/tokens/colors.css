@@ -1,0 +1,34 @@
+:root{
+  --ww-ink:#1c2a22; --ww-chalk:#f5f4ef; --ww-moss:#6f8a4f; --ww-sky:#8cc6e0; --ww-butter:#f2d27a; --ww-white:#ffffff;
+  --ww-ink-2:#25352c; --ww-ink-3:#2e4036; --ww-ink-soft:#3e4b43;
+  --ww-moss-deep:#66804a; --ww-sky-soft:#a9d5e9; --ww-butter-soft:#f6e0a3; --ww-coral:#e4876f;
+  --bg-page:var(--ww-butter);
+  --surface-card:var(--ww-chalk);
+  --surface-raised:var(--ww-white);
+  --surface-inverse:var(--ww-ink);
+  --fg-1:var(--ww-ink);
+  --fg-2:var(--ww-ink-soft);
+  --fg-inverse:var(--ww-chalk);
+  --fg-on-accent:var(--ww-ink);
+  --border-color:var(--ww-ink);
+  --hover-fill:var(--ww-sky);
+  --focus-ring:var(--ww-sky);
+  --accent-primary:var(--ww-sky);
+  --accent-secondary:var(--ww-moss);
+  --accent-warm:var(--ww-butter);
+  --status-success:var(--ww-moss);
+  --status-info:var(--ww-sky);
+  --status-warning:var(--ww-butter);
+  --status-error:var(--ww-coral);
+  --logo-ground:var(--ww-sky); --logo-wing:var(--ww-moss); --logo-body:var(--ww-butter); --logo-ink:var(--ww-ink);
+}
+[data-theme="dark"]{
+  --bg-page:var(--ww-ink);
+  --surface-card:var(--ww-ink-2);
+  --surface-raised:var(--ww-ink-3);
+  --surface-inverse:var(--ww-chalk);
+  --fg-1:var(--ww-chalk);
+  --fg-2:#c9cfc6;
+  --fg-inverse:var(--ww-ink);
+  --border-color:var(--ww-chalk);
+}

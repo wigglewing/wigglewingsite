@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiggle Wing Software</title>
+  <link rel="icon" href="design-system/assets/logo/app-icon-studio.svg">
+  <link rel="stylesheet" href="design-system/styles.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; }
+    .wrap { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--gutter); }
+    .mono { font-family: var(--font-mono); font-size: var(--text-label); text-transform: uppercase; }
+    .icon { display: inline-block; width: 24px; height: 24px; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+
+    /* Header */
+    header { display: flex; align-items: center; gap: 24px; padding: 20px 0; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg-1); font-weight: var(--weight-extrabold); font-size: 24px; letter-spacing: var(--tracking-display); }
+    .logo:hover { color: var(--fg-1); }
+    .logo .light { font-weight: var(--weight-regular); letter-spacing: var(--tracking-sub); }
+    .badge { width: 44px; height: 44px; flex: none; border-radius: 50%; background: var(--logo-ground); border: var(--border); padding: 6px; }
+    .badge img { display: block; width: 100%; height: 100%; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); border: var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .hero-text { background: var(--surface-card); padding: var(--space-9); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-8); }
+    .hero h1 { margin: 0; font-weight: var(--weight-extrabold); font-size: clamp(52px, 6.5vw, 96px); line-height: var(--leading-display); letter-spacing: var(--tracking-display); text-wrap: balance; }
+    .hero p { margin: 0; font-size: var(--text-body-l); line-height: var(--leading-body); max-width: 480px; text-wrap: pretty; }
+    .hero-mark { background: var(--logo-ground); border-left: var(--border); padding: var(--space-9); display: flex; align-items: center; justify-content: center; min-height: 380px; }
+    .hero-mark img { width: 100%; max-width: 520px; display: block; }
+    .pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: var(--control-h-md); padding: 0 22px; border: var(--border); border-radius: var(--radius-pill); background: var(--ww-ink); color: var(--ww-butter); font-weight: var(--weight-semibold); font-size: 16px; }
+
+    /* Sections */
+    .section { display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-9); padding: var(--space-10) 0; border-bottom: var(--border); }
+    .section-head { flex: 0 0 240px; display: flex; flex-direction: column; gap: 8px; }
+    .section-head h2 { margin: 0; font-weight: var(--weight-extrabold); font-size: var(--text-h1); letter-spacing: var(--tracking-heading); line-height: 1.05; }
+    .section-head p { margin: 0; font-size: var(--text-body-s); line-height: var(--leading-body); }
+    .section-body { flex: 1 1 560px; min-width: 0; }
+
+    /* App cards */
+    .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); }
+    .card { background: var(--surface-card); border: var(--border); border-radius: var(--radius-md); padding: var(--space-6); display: flex; flex-direction: column; gap: 12px; transition: background var(--duration-fast) var(--ease-standard); }
+    .card:hover { background: var(--hover-fill); color: var(--ww-ink); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .app-icon { width: 64px; height: 64px; border-radius: var(--radius-app-icon); border: var(--border); background: var(--ww-butter); display: inline-flex; align-items: center; justify-content: center; color: var(--ww-ink); }
+    .app-icon .icon { width: 30px; height: 30px; }
+    .card h3 { margin: 0; font-weight: var(--weight-extrabold); font-size: 28px; line-height: 1; letter-spacing: var(--tracking-display); }
+    .card p { margin: 0; font-size: var(--text-body-s); line-height: var(--leading-body); text-wrap: pretty; }
+    .tag { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; padding: 5px 10px; border: var(--border); border-radius: var(--radius-pill); background: var(--surface-raised); color: var(--ww-ink); }
+
+    /* About */
+    .about { background: var(--ww-ink); color: var(--ww-chalk); border: var(--border); border-radius: var(--radius-lg); padding: var(--space-9); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-8); align-items: center; }
+    .about h2 { margin: 0; font-weight: var(--weight-extrabold); font-size: clamp(40px, 5vw, 64px); line-height: 0.95; letter-spacing: var(--tracking-display); }
+    .about p { margin: 0; font-size: var(--text-body-l); line-height: 1.6; max-width: 560px; text-wrap: pretty; }
+    .about-wrap { padding: var(--space-10) 0; }
+
+    /* Footer */
+    footer { border-top: var(--border); padding: var(--space-8) 0 var(--space-6); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; font-size: var(--text-body-s); }
+    footer .left { display: flex; align-items: center; gap: 12px; }
+    footer .badge { width: 32px; height: 32px; padding: 4px; }
+
+    @media (max-width: 700px) { .hero-mark { border-left: none; border-top: var(--border); min-height: 260px; } .hero-text, .hero-mark, .about { padding: var(--space-7); } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="logo" href="#">
+        <span class="badge"><img src="design-system/assets/logo/face-small.svg" alt="Wiggle Wing butterfly logo"></span>
+        <span>Wiggle Wing<span class="light">&nbsp;Software</span></span>
+      </a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <span class="mono">Indie mobile studio · Est. 2026</span>
+        <h1>Apps That Move<br>With Your Life</h1>
+        <p>An indie mobile studio building apps for everyday moments — on the golf course, at the grocery store, around the kitchen table, and beyond.</p>
+        <span class="pill">Coming to the App Store</span>
+      </div>
+      <div class="hero-mark">
+        <img src="design-system/assets/logo/mark-main.svg" alt="">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <span class="mono">01</span>
+        <h2>What We're Building</h2>
+        <p>Each app starts with a real problem and ends with something you'll actually want to use.</p>
+      </div>
+      <div class="section-body apps-grid">
+      <article class="card">
+        <div class="card-top"><span class="app-icon"><span class="icon" style="--i:url(https://unpkg.com/lucide-static@0.460.0/icons/puzzle.svg)"></span></span><span class="tag">Coming Soon</span></div>
+        <h3>Number Puzzles</h3>
+        <p>Sharpen your mind with satisfying number challenges designed for every skill level. Brain food — no fork required.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="app-icon"><span class="icon" style="--i:url(https://unpkg.com/lucide-static@0.460.0/icons/scan.svg)"></span></span><span class="tag">Coming Soon</span></div>
+        <h3>Golf Glove Scanner</h3>
+        <p>Scan and track your golf gloves so you always know what's in your bag — and when it's time for a fresh pair.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="app-icon"><span class="icon" style="--i:url(https://unpkg.com/lucide-static@0.460.0/icons/wheat.svg)"></span></span><span class="tag">Coming Soon</span></div>
+        <h3>Gluten Scan</h3>
+        <p>Point, scan, and know. Quickly surface gluten-containing ingredients in packaged foods before they end up in the cart.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="app-icon"><span class="icon" style="--i:url(https://unpkg.com/lucide-static@0.460.0/icons/calendar-clock.svg)"></span></span><span class="tag">Coming Soon</span></div>
+        <h3>Tee Time Scheduler</h3>
+        <p>Book, organize, and share tee times with your crew — no group texts required. Just show up and play.</p>
+      </article>
+      </div>
+    </section>
+
+    <div class="about-wrap">
+      <section class="about">
+        <h2>Why Wiggle Wing?</h2>
+        <p>The name comes from two very important little people. Wiggle Wing Software is a one-person indie studio with one mission: build apps that earn a permanent spot on your home screen. Every app is built with care, kept focused, and made to be genuinely useful — no fluff, no fuss.</p>
+      </section>
+    </div>
+
+    <footer>
+      <div class="left">
+        <span class="badge"><img src="design-system/assets/logo/face-small.svg" alt=""></span>
+        <span><strong>Wiggle Wing Software, LLC</strong> &mdash; &copy; 2026. All rights reserved.</span>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
