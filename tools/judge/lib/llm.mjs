@@ -1,4 +1,10 @@
 // LLM judge: Claude compares live vs local screenshots for one page, given the deterministic findings.
+// Two backends:
+//   api         - Anthropic SDK, needs ANTHROPIC_API_KEY (or `ant auth login`).
+//   claude-code - runs `claude -p` headless, so it uses your Claude Code login (subscription).
+import { spawn } from 'node:child_process';
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { join } from 'node:path';
 import Anthropic from '@anthropic-ai/sdk';
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
 import { z } from 'zod';
@@ -63,4 +69,50 @@ export async function judgePage(client, { page, pairs, findings, expected }) {
 
 export function makeClient() {
   return new Anthropic();
+}
+
+/** Pick a backend: explicit choice, else the API when a key is set, else Claude Code. */
+export function pickBackend(choice) {
+  if (choice && choice !== 'auto') return choice;
+  return process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN ? 'api' : 'claude-code';
+}
+
+/** Same verdict as judgePage, but through headless Claude Code. Images are written to dir and read with the Read tool. */
+export async function judgePageViaClaudeCode(dir, { page, pairs, findings, expected }) {
+  mkdirSync(dir, { recursive: true });
+  const lines = [];
+  for (const { label, live, local } of pairs) {
+    const stem = `${page}-${label.replace('/', '-')}`;
+    writeFileSync(join(dir, `${stem}-live.png`), live);
+    writeFileSync(join(dir, `${stem}-local.png`), local);
+    lines.push(`- Capture ${label}: LIVE (reference) ${stem}-live.png, LOCAL (rebuild) ${stem}-local.png`);
+  }
+  const prompt = `Read every screenshot below with the Read tool (they are in the current directory), compare each LIVE/LOCAL pair, then return your verdict.
+
+${lines.join('\n')}
+
+EXPECTED CHANGES:
+${expected}
+
+AUTOMATED FINDINGS for page "${page}":
+${JSON.stringify(findings, null, 1)}
+
+Return your verdict for page "${page}".`;
+  const args = ['-p', prompt, '--output-format', 'json', '--json-schema', JSON.stringify({ ...z.toJSONSchema(Verdict), $schema: undefined }),
+    '--model', MODEL, '--effort', 'high', '--system-prompt', SYSTEM,
+    '--tools', 'Read', '--allowedTools', 'Read', '--strict-mcp-config', '--no-session-persistence'];
+  const out = await new Promise((resolve, reject) => {
+    const child = spawn(process.env.CLAUDE_BIN || 'claude', args, { cwd: dir, stdio: ['ignore', 'pipe', 'pipe'] });
+    let stdout = '', stderr = '';
+    child.stdout.on('data', (d) => (stdout += d));
+    child.stderr.on('data', (d) => (stderr += d));
+    child.on('error', (e) => reject(new Error(`could not run claude CLI: ${e.message}`)));
+    child.on('close', (code) => (code === 0 ? resolve(stdout) : reject(new Error(`claude exited ${code}: ${(stderr || stdout).slice(0, 300)}`))));
+  });
+  const parsed = JSON.parse(out);
+  const result = Array.isArray(parsed) ? parsed.findLast((m) => m.type === 'result') : parsed;
+  if (!result || result.is_error) throw new Error(`Claude Code failed on "${page}": ${result?.result || result?.subtype || 'no result'}`);
+  const v = Verdict.safeParse(result.structured_output);
+  if (!v.success) throw new Error(`No structured verdict for "${page}" (${result.stop_reason})`);
+  return { ...v.data, model: MODEL, backend: 'claude-code', cost_usd: result.total_cost_usd };
 }

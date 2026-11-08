@@ -3,6 +3,8 @@
 //
 //   node judge.mjs                       # full run (needs Anthropic credentials for the LLM step)
 //   node judge.mjs --no-llm              # deterministic checks + screenshots only
+//   node judge.mjs --llm claude-code     # judge with your Claude Code login (default when no ANTHROPIC_API_KEY)
+//   node judge.mjs --llm api             # judge with the Anthropic API key
 //   node judge.mjs --pages home,support  # subset
 //   node judge.mjs --live https://deploy-preview-3--wigglewing.netlify.app
 //   node judge.mjs --local http://localhost:8888   # judge a running server instead of the repo
@@ -19,7 +21,7 @@ import { serve } from './lib/server.mjs';
 import { capture, noJsProbe } from './lib/capture.mjs';
 import { contentParity, pixelDiff, sourceCompliance, runtimeCompliance, siteWide } from './lib/checks.mjs';
 import { interactions } from './lib/interactions.mjs';
-import { judgePage, makeClient, MODEL } from './lib/llm.mjs';
+import { judgePage, judgePageViaClaudeCode, makeClient, pickBackend, MODEL } from './lib/llm.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const siteRoot = resolve(here, '../..');
@@ -30,6 +32,7 @@ const { values: args } = parseArgs({
     pages: { type: 'string', default: 'home,about,support' },
     out: { type: 'string', default: join(here, 'out') },
     'no-llm': { type: 'boolean', default: false },
+    llm: { type: 'string', default: 'auto' }, // auto | api | claude-code
     'ds-path': { type: 'string', default: process.env.DS_PATH || join(homedir(), 'projects/designSystem') },
   },
 });
@@ -102,15 +105,19 @@ try {
   let llmStatus = 'skipped (--no-llm)';
   if (!args['no-llm']) {
     try {
-      const client = makeClient();
-      log(`asking ${MODEL} to judge ${PAGES.length} page(s)…`);
-      verdicts = await Promise.all(PAGES.map((page) => judgePage(client, {
-        page,
-        pairs: caps.filter((c) => c.page === page).map((c) => ({ label: c.label, live: fitForLLM(c.live.png), local: fitForLLM(c.local.png) })),
-        findings: findings.filter((x) => x.page === page || x.page === 'site').filter((x) => x.status !== 'pass').map(({ id, status, detail, items }) => ({ id, status, detail, items: items?.slice(0, 15) })),
-        expected,
-      })));
-      llmStatus = 'ran';
+      const backend = pickBackend(args.llm);
+      const client = backend === 'api' ? makeClient() : null;
+      log(`asking ${MODEL} via ${backend} to judge ${PAGES.length} page(s)…`);
+      verdicts = await Promise.all(PAGES.map((page) => {
+        const input = {
+          page,
+          pairs: caps.filter((c) => c.page === page).map((c) => ({ label: c.label, live: fitForLLM(c.live.png), local: fitForLLM(c.local.png) })),
+          findings: findings.filter((x) => x.page === page || x.page === 'site').filter((x) => x.status !== 'pass').map(({ id, status, detail, items }) => ({ id, status, detail, items: items?.slice(0, 15) })),
+          expected,
+        };
+        return backend === 'api' ? judgePage(client, input) : judgePageViaClaudeCode(join(args.out, 'llm'), input);
+      }));
+      llmStatus = `ran (${backend})`;
     } catch (e) {
       llmStatus = `error: ${e.message}`;
       log(`LLM judge failed: ${e.message}`);
@@ -121,7 +128,7 @@ try {
   const fails = findings.filter((x) => x.status === 'fail');
   const warns = findings.filter((x) => x.status === 'warn');
   const llmFails = verdicts.filter((v) => v.verdict === 'fail');
-  const overall = fails.length || llmFails.length ? 'FAIL' : llmStatus === 'ran' ? 'PASS' : 'INCOMPLETE';
+  const overall = fails.length || llmFails.length ? 'FAIL' : llmStatus.startsWith('ran') ? 'PASS' : 'INCOMPLETE';
   writeFileSync(join(args.out, 'report.json'), JSON.stringify({ overall, live: args.live, local: localBase, llm: llmStatus, model: MODEL, findings, pixel, verdicts }, null, 2));
 
   const icon = { pass: '✅', warn: '⚠️', fail: '❌' };

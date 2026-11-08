@@ -28,7 +28,8 @@ node tools/sync-ds.mjs --check   # fails if design-system/ is stale
 ```sh
 cd tools/judge
 npm install && npx playwright install chromium   # once
-npm run judge          # full run; needs ANTHROPIC_API_KEY (or `ant auth login`)
+npm run judge          # full run; Claude judges via your Claude Code login (`claude -p`)
+npm run judge -- --llm api   # use ANTHROPIC_API_KEY instead (auto-picked when the key is set)
 npm run judge:fast     # deterministic checks + screenshots only
 node judge.mjs --live https://deploy-preview-N--<site>.netlify.app --pages support
 ```
