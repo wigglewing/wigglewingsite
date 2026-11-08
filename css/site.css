@@ -1,0 +1,127 @@
+/*
+ * wigglewing.com layout. Everything visual comes from the design system:
+ *   design-system/web/css/brands/wigglewing.css  (tokens)
+ *   design-system/web/css/components.css         (ww- components)
+ * Rules: no raw colors, no font names, spacing only from var(--space-*).
+ * Fixed px values below are sizes (icons, marks, grid minimums), never spacing.
+ */
+
+/* ---------- shared bits ---------- */
+/* DS components set display:flex, which would otherwise beat the hidden attribute. */
+[hidden] { display: none !important; }
+.site-icon { width: var(--icon-md); height: var(--icon-md); flex: none; fill: none; stroke: currentColor; stroke-width: var(--icon-stroke); stroke-linecap: round; stroke-linejoin: round; }
+.site-icon--lg { width: var(--icon-lg); height: var(--icon-lg); }
+.site-main { display: flex; flex-direction: column; gap: var(--space-12); padding-top: var(--space-2); }
+.site-eyebrow { display: flex; flex-direction: column; gap: var(--space-5); }
+.site-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Studio mark: the butterfly face in a sky circle (nav + footer lockup). */
+.site-mark { width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--color-accent); border: var(--border); padding: var(--space-1); display: grid; place-items: center; }
+.site-mark img { width: 100%; height: 100%; }
+.ww-brand.site-lockup { gap: var(--space-3); }
+
+/* Nav: DS nav links are 36pt; keep the whole row reachable on small screens. */
+.ww-nav__bar { flex-wrap: wrap; }
+.ww-nav__links { flex-wrap: wrap; }
+.ww-brand.site-lockup { min-height: var(--min-hit); }
+/* Small (36pt) DS controls grow to the 44pt touch target on touch screens. */
+@media (pointer: coarse) {
+  .ww-nav__links a:not(.ww-btn), .ww-nav__links .ww-btn--sm, .site-filter .ww-chip { min-height: var(--min-hit); }
+}
+
+/* ---------- home: hero ---------- */
+.site-hero__copy { padding: var(--space-12); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-10); }
+.site-hero__art { background: var(--color-accent); padding: var(--space-12); display: grid; place-items: center; min-height: 380px; }
+.site-hero__art img { width: 100%; max-width: 520px; aspect-ratio: 770 / 530; }
+@media (max-width: 600px) {
+  .site-hero__copy, .site-hero__art { padding: var(--space-6); }
+  .site-hero__art { min-height: 260px; }
+}
+
+/* ---------- numbered section: label column + content ---------- */
+.site-section { display: grid; grid-template-columns: minmax(180px, 220px) 1fr; gap: var(--space-6) var(--space-12); padding-top: var(--space-16); }
+.site-section__head { display: flex; flex-direction: column; gap: var(--space-2); }
+@media (max-width: 860px) { .site-section { grid-template-columns: 1fr; } }
+
+/* ---------- app cards ---------- */
+.site-apps { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); }
+.site-app { gap: var(--space-5); }
+.site-app__top { display: flex; justify-content: space-between; align-items: flex-start; }
+.site-app__text { display: flex; flex-direction: column; gap: var(--space-2); }
+.site-app .ww-app-icon { width: 72px; display: grid; place-items: center; }
+.site-app .ww-app-icon .site-icon { width: var(--icon-xl); height: var(--icon-xl); }
+/* App icon grounds: the studio swatches, through roles so dark mode and contrast hold. */
+.site-app--glovelens .ww-app-icon { background: var(--color-secondary); color: var(--color-on-secondary); }
+.site-app--glutenscan .ww-app-icon { background: var(--color-warning); color: var(--color-on-warning); }
+.site-app--lostpuzzles .ww-app-icon { background: var(--color-accent); color: var(--color-on-accent); }
+@media (hover: hover) {
+  a.site-app:hover { background: var(--color-accent); color: var(--color-on-accent); }
+}
+
+/* ---------- about ---------- */
+.site-intro { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-8); align-items: end; padding-top: var(--space-6); }
+.site-placeholder {
+  aspect-ratio: 21 / 8; border: var(--border); border-radius: var(--radius-lg);
+  background: repeating-linear-gradient(135deg, var(--color-surface) 0 12px, var(--color-surface-sunken) 12px 24px);
+  display: grid; place-items: center; text-align: center; padding: var(--space-4);
+}
+.site-principles { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+.site-principles .ww-card { gap: var(--space-2); }
+.site-cta { padding: var(--space-10); flex-direction: row; flex-wrap: wrap; gap: var(--space-6); align-items: center; justify-content: space-between; }
+@media (max-width: 600px) { .site-cta { padding: var(--space-6); } }
+
+/* ---------- support ---------- */
+.site-support { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: var(--space-6); align-items: start; }
+.site-faq { display: flex; flex-direction: column; gap: var(--space-4); }
+.site-filter { display: inline-flex; flex-wrap: wrap; gap: var(--space-1); padding: var(--space-1); border: var(--border); border-radius: var(--radius-pill); background: var(--color-surface); align-self: flex-start; }
+.site-filter .ww-chip { border-color: transparent; background: transparent; }
+.site-filter .ww-chip[aria-pressed="true"] { background: var(--color-primary); color: var(--color-on-primary); }
+
+.site-list { border: var(--border); border-radius: var(--radius-md); background: var(--color-surface); overflow: hidden; }
+.site-list > * + * { border-top: var(--border); }
+.site-list details > summary {
+  display: flex; align-items: center; gap: var(--space-4); min-height: var(--control-h-lg);
+  padding: var(--space-4) var(--space-5); cursor: pointer; list-style: none;
+  font-weight: var(--weight-semibold); font-size: var(--text-body-l); line-height: 1.3;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+.site-list details > summary::-webkit-details-marker { display: none; }
+.site-list details > summary > span { flex: 1; }
+.site-list details > summary .site-icon--open, .site-list details[open] > summary .site-icon--closed { display: none; }
+.site-list details[open] > summary .site-icon--open { display: block; }
+.site-list details > p { padding: 0 var(--space-5) var(--space-5); max-width: var(--readable-max); }
+@media (hover: hover) { .site-list details > summary:hover { background: var(--color-accent); color: var(--color-on-accent); } }
+
+.site-form { display: flex; flex-direction: column; gap: var(--space-5); }
+.site-form .ww-field > label { font: var(--weight-regular) var(--text-label)/var(--leading-label) var(--font-mono); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+textarea.ww-input { padding-block: var(--space-3); resize: vertical; min-height: 140px; }
+.site-select { position: relative; display: block; }
+.site-select select { appearance: none; -webkit-appearance: none; width: 100%; padding-right: var(--space-12); cursor: pointer; }
+.site-select .site-icon { position: absolute; right: var(--space-4); top: 50%; transform: translateY(-50%); pointer-events: none; }
+.site-check { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--min-hit); cursor: pointer; }
+.site-check input { width: 24px; height: 24px; margin: 0; accent-color: var(--color-primary); }
+.site-form .ww-btn { align-self: stretch; }
+.site-form .ww-field__error { display: flex; align-items: center; gap: var(--space-1); }
+
+.site-toast { position: fixed; right: var(--space-6); bottom: var(--space-6); z-index: 200; max-width: min(420px, calc(100vw - 2 * var(--space-4))); align-items: flex-start; }
+.site-toast[hidden] { display: none; }
+.site-toast .site-icon { margin-top: var(--space-0_5); }
+@media (max-width: 600px) { .site-toast { right: var(--space-4); left: var(--space-4); bottom: var(--space-4); } }
+
+/* ---------- footer ---------- */
+/* DS footer links are bare text (about 18px tall); give them a full touch target. */
+.ww-footer__links a { display: inline-flex; align-items: center; justify-content: center; min-height: var(--min-hit); min-width: var(--min-hit); }
+.site-footer__brand { display: flex; flex-direction: column; gap: var(--space-3); }
+.site-footer__end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); }
+
+/* Dark mode switch (the DS Toggle, web version). */
+.site-switch { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--min-hit); padding: 0; border: 0; background: none; color: inherit; font: var(--weight-semibold) var(--text-body-s)/1 var(--font-body); cursor: pointer; }
+.site-switch__track { position: relative; width: 52px; height: 30px; border-radius: var(--radius-pill); border: var(--border); background: var(--color-surface-raised); transition: background-color var(--duration-fast) var(--ease-standard); }
+.site-switch__thumb { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--color-text); transition: transform var(--duration-base) var(--ease-standard); }
+.site-switch[aria-checked="true"] .site-switch__track { background: var(--color-secondary); }
+.site-switch[aria-checked="true"] .site-switch__thumb { transform: translateX(22px); }
+.site-switch:active .site-switch__track { transform: scale(var(--press-scale)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-switch__thumb, .site-switch__track, .site-list details > summary { transition: none; }
+}
