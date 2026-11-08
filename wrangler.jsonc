@@ -1,0 +1,30 @@
+// wigglewing.com on Cloudflare Workers: static pages from the repo root + the contact form API.
+// Deploy: npx wrangler deploy   ·   Local: npx wrangler dev
+{
+  "name": "wigglewing-site",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    // Every request reaches the Worker first so it can redirect www; it hands pages to ASSETS.
+    "run_worker_first": true
+  },
+  "routes": [
+    { "pattern": "wigglewing.com", "custom_domain": true },
+    { "pattern": "www.wigglewing.com", "custom_domain": true }
+  ],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "wigglewing-contact", "database_id": "577e483c-b5ee-4101-9043-8d75222f8932", "migrations_dir": "migrations" }
+  ],
+  // Contact messages go to one address only.
+  "send_email": [{ "name": "EMAIL", "destination_address": "hello@wigglewing.com" }],
+  "vars": {
+    "CONTACT_TO": "hello@wigglewing.com",
+    "CONTACT_FROM": "forms@wigglewing.com"
+  },
+  // Secret (not in git): TURNSTILE_SECRET  ->  npx wrangler secret put TURNSTILE_SECRET
+  "observability": { "enabled": true }
+}

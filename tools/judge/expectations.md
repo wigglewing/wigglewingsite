@@ -14,7 +14,7 @@ used by the deterministic content check: live text that contains any of them may
 - The footer adds the "Made by WiggleWing" badge, which is required on every site.
 - "Privacy" in the footer goes to the privacy FAQ on Support (live linked to "#").
 - Support: the app filter uses chips; FAQ answers are native disclosure rows (plus/minus icon).
-- Support form posts to Netlify Forms. It validates email inline, shows an error banner if sending fails, and a success toast when it works. "Include device info" sends the browser user agent.
+- Support form posts to the site's Worker (/api/contact) instead of Netlify Forms, and has a Cloudflare Turnstile bot check above the Send button. It validates email inline, shows an error banner if sending fails, and a success toast when it works. "Include device info" sends the browser user agent.
 - The focus ring is deep sky (#1f6f99) and the secondary color is moss-deep (#4f6636), both changed in the design system to pass contrast.
 - In dark mode, primary buttons are butter (the design system's dark primary) and the illustration placeholder follows the theme (live leaves it light).
 - Dark mode follows the system setting until the visitor uses the switch, which is remembered.

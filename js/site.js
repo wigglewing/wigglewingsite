@@ -34,13 +34,15 @@
     });
   }
 
-  // ---- Support: contact form. Inline validation, then post to Netlify Forms.
+  // ---- Support: contact form. Inline validation, then post to the Worker (/api/contact),
+  // which checks the Turnstile token, saves the message and emails the team.
   const form = document.querySelector('[data-contact-form]');
   if (form) {
     const email = form.querySelector('#contact-email');
     const err = form.querySelector('#contact-email-error');
     const hint = form.querySelector('#contact-email-hint');
     const failed = form.querySelector('[data-form-failed]');
+    const failedText = failed.querySelector('[data-form-failed-text]');
     const toast = document.querySelector('[data-toast]');
     const valid = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
     const show = (bad) => {
@@ -68,18 +70,25 @@
       const btn = form.querySelector('[type="submit"]');
       btn.setAttribute('aria-disabled', 'true');
       try {
-        const res = await fetch(form.getAttribute('action') || '/', {
+        const res = await fetch(form.getAttribute('action'), {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
           body: new URLSearchParams(data).toString(),
         });
-        if (!res.ok) throw new Error(String(res.status));
+        if (!res.ok) {
+          const out = await res.json().catch(() => ({}));
+          throw new Error(out.error || String(res.status));
+        }
         form.reset();
         showToast();
-      } catch {
+      } catch (e2) {
+        failedText.textContent = e2.message === 'bot-check-failed'
+          ? 'Complete the check above the button, then send again.'
+          : 'Check your connection and try again.';
         failed.hidden = false;
       } finally {
         btn.removeAttribute('aria-disabled');
+        window.turnstile?.reset(); // tokens work once
       }
     });
   }

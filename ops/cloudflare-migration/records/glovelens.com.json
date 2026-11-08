@@ -1,0 +1,69 @@
+{
+  "source": "dig @dns1.p07.nsone.net over common names, 2026-11-08 (no zone export; confirm against Netlify DNS panel)",
+  "records": [
+    {
+      "type": "CNAME",
+      "name": "@",
+      "content": "<glovelens-netlify-site>.netlify.app",
+      "proxied": false,
+      "note": "flattened; replaces Netlify apex A records 13.52.188.95/52.52.192.191"
+    },
+    {
+      "type": "CNAME",
+      "name": "www",
+      "content": "<glovelens-netlify-site>.netlify.app",
+      "proxied": false
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "content": "in1-smtp.messagingengine.com",
+      "priority": 10
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "content": "in2-smtp.messagingengine.com",
+      "priority": 20
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "content": "feedback-smtp.us-west-2.amazonses.com",
+      "priority": 30
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "content": "v=spf1 include:spf.messagingengine.com ?all"
+    },
+    {
+      "type": "TXT",
+      "name": "_dmarc",
+      "content": "v=DMARC1; p=none;"
+    },
+    {
+      "type": "CNAME",
+      "name": "fm1._domainkey",
+      "content": "fm1.glovelens.com.dkim.fmhosted.com",
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "fm2._domainkey",
+      "content": "fm2.glovelens.com.dkim.fmhosted.com",
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "fm3._domainkey",
+      "content": "fm3.glovelens.com.dkim.fmhosted.com",
+      "proxied": false
+    }
+  ],
+  "notes": [
+    "Site source: blairacuda/gloveScanApp landing-page/ (static, SPA fallback redirect, security headers). Waitlist posts to AWS API Gateway, not Netlify Forms.",
+    "Apex MX 30 -> amazonses feedback-smtp looks misplaced: SES feedback MX belongs on a custom MAIL FROM subdomain, and at the apex it can catch Fastmail overflow. Copy as-is for parity, then ask the user.",
+    "_dmarc TXT value has literal embedded quotes; fix on import (store without the extra quotes)."
+  ]
+}
