@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WiggleWing Support · How can we help?</title>
+  <meta name="description" content="Answers for GloveLens, GlutenScan and LostPuzzles, and a form to write to the WiggleWing team.">
+  <link rel="icon" href="/design-system/assets/brands/wigglewing/app-icon-studio.svg" type="image/svg+xml">
+  <meta property="og:title" content="WiggleWing Support · How can we help?">
+  <meta property="og:description" content="Answers for GloveLens, GlutenScan and LostPuzzles, and a form to write to the WiggleWing team.">
+  <meta property="og:image" content="/design-system/assets/brands/wigglewing/mark-main-on-sky.svg">
+  <script>try { var t = localStorage.getItem('ww-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <link rel="stylesheet" href="/design-system/web/css/fonts/wigglewing.css">
+  <link rel="stylesheet" href="/design-system/web/css/brands/wigglewing.css">
+  <link rel="stylesheet" href="/design-system/web/css/components.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="/js/site.js" defer></script>
+</head>
+<body class="ww-root">
+  <header class="ww-nav ww-nav--material">
+    <nav class="ww-container ww-nav__bar" aria-label="Main">
+      <a class="ww-brand site-lockup" href="/"><span class="site-mark"><img src="/design-system/assets/brands/wigglewing/face-small.svg" alt=""></span>WiggleWing</a>
+      <ul class="ww-nav__links">
+        <li><a href="/">Apps</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/support/" aria-current="page">Support</a></li>
+        <li><a class="ww-btn ww-btn--sm" href="/support/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="ww-container site-main">
+    <div class="site-eyebrow" style="padding-top: var(--space-6)">
+      <p class="ww-label">Support</p>
+      <h1 class="ww-display-l">How can we help?</h1>
+    </div>
+
+    <div class="site-support">
+      <section class="site-faq" aria-label="Frequently asked questions">
+        <div class="site-filter" role="group" aria-label="Show questions for" data-faq-filter>
+          <button class="ww-chip" type="button" data-app="all" aria-pressed="true">All apps</button>
+          <button class="ww-chip" type="button" data-app="glove" aria-pressed="false">GloveLens</button>
+          <button class="ww-chip" type="button" data-app="gluten" aria-pressed="false">GlutenScan</button>
+          <button class="ww-chip" type="button" data-app="lost" aria-pressed="false">LostPuzzles</button>
+        </div>
+        <div class="site-list">
+          <details data-faq-app="all"><summary><span>How do I restore a purchase?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Open Settings in the app and tap Restore Purchases. Use the same Apple ID you bought with.</p></details>
+          <details data-faq-app="all" id="privacy"><summary><span>What data do the apps collect?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Only what each app needs to work. The privacy policy lists it app by app.</p></details>
+          <details data-faq-app="glove"><summary><span>What lighting works best for a scan?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Daylight or a bright room. Lay the glove flat, palm up.</p></details>
+          <details data-faq-app="gluten"><summary><span>Can GlutenScan replace medical advice?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">No. It reads labels. Check with your doctor about your diet.</p></details>
+          <details data-faq-app="lost"><summary><span>Where do new puzzles come from?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">New packs are added in updates. The app shows what is coming next.</p></details>
+        </div>
+      </section>
+
+      <section class="ww-card" id="contact" aria-labelledby="contact-title" style="padding: var(--space-10)">
+        <form class="site-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="company" data-contact-form novalidate>
+          <h2 class="ww-h2" id="contact-title">Write to us</h2>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="site-visually-hidden"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
+          <div class="ww-field">
+            <label for="contact-name">Name</label>
+            <input class="ww-input" id="contact-name" name="name" autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="ww-field">
+            <label for="contact-email">Email</label>
+            <input class="ww-input" id="contact-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-describedby="contact-email-hint contact-email-error">
+            <p class="ww-field__hint" id="contact-email-hint">We reply within two days.</p>
+            <p class="ww-field__error" id="contact-email-error" role="alert" hidden>That email looks incomplete. Use a format like name@example.com.</p>
+          </div>
+          <div class="ww-field">
+            <label for="contact-app">Which app?</label>
+            <span class="site-select">
+              <select class="ww-input" id="contact-app" name="app">
+                <option value="" disabled selected>Choose one</option>
+                <option>GloveLens</option><option>GlutenScan</option><option>LostPuzzles</option><option>Something else</option>
+              </select><svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </div>
+          <div class="ww-field">
+            <label for="contact-message">Message</label>
+            <textarea class="ww-input" id="contact-message" name="message" rows="5" placeholder="What happened, and what did you expect?"></textarea>
+          </div>
+          <label class="site-check"><input type="checkbox" name="device-info" value="yes" checked> Include device info</label>
+          <div class="ww-banner ww-banner--danger" role="alert" data-form-failed hidden><strong>Your message didn't send.</strong> Check your connection and try again.</div>
+          <button class="ww-btn ww-btn--lg" type="submit">Send message <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></button>
+        </form>
+      </section>
+    </div>
+
+    <div class="ww-banner ww-banner--success site-toast" role="status" data-toast hidden>
+      <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      <div class="ww-stack" style="gap: var(--space-1); flex: 1"><strong>Message sent</strong><span class="ww-body-s">We'll reply within two days.</span></div>
+      <button class="ww-btn ww-btn--ghost ww-btn--sm" type="button" aria-label="Dismiss" data-toast-close><svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+  </main>
+
+  <footer class="ww-footer">
+    <div class="ww-container ww-footer__row">
+      <div class="site-footer__brand">
+        <a class="ww-brand site-lockup" href="/"><span class="site-mark"><img src="/design-system/assets/brands/wigglewing/face-small.svg" alt=""></span>WiggleWing</a>
+        <p class="ww-label">© 2026 WiggleWing · Indie mobile studio</p>
+      </div>
+      <div class="site-footer__end">
+        <ul class="ww-footer__links">
+          <li><a href="/">Apps</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/support/">Support</a></li>
+          <li><a href="/support/#privacy">Privacy</a></li>
+        </ul>
+        <button class="site-switch" type="button" role="switch" aria-checked="false" data-theme-switch><span class="site-switch__track"><span class="site-switch__thumb"></span></span>Dark mode</button>
+        <a class="ww-madeby" href="https://wigglewing.com"><span class="ww-madeby__mark"><svg viewBox="300 108 200 180" fill="none" stroke="#1c2a22" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path fill="#f2d27a" d="M350,275 C335,245 335,200 355,175 C375,155 430,150 460,165 C485,180 488,225 478,250 C470,265 460,275 452,282"/><path d="M365,178 C358,160 348,148 335,148 C325,148 318,152 316,158 M440,165 C445,140 458,125 475,120"/><circle cx="477" cy="120" r="3" fill="#1c2a22"/><ellipse cx="381" cy="217" rx="5" ry="9" fill="#1c2a22" stroke="none"/><ellipse cx="437" cy="188" rx="4" ry="8" fill="#1c2a22" stroke="none"/><path d="M383,248 C390,262 415,262 425,232"/></svg></span><span class="ww-madeby__text"><span class="ww-madeby__by">Made by</span> <span class="ww-madeby__name">WiggleWing</span></span></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

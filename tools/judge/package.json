@@ -1,0 +1,18 @@
+{
+  "name": "wigglewing-site-judge",
+  "private": true,
+  "type": "module",
+  "description": "Compares the local wigglewing.com build against the live site: content parity, visual fidelity, design-system compliance.",
+  "scripts": {
+    "judge": "node judge.mjs",
+    "judge:fast": "node judge.mjs --no-llm"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "@axe-core/playwright": "^4.14.0",
+    "pixelmatch": "^8.0.0",
+    "playwright": "^1.65.0",
+    "pngjs": "^7.0.0",
+    "zod": "^4.6.7"
+  }
+}
