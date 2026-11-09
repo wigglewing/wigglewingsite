@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GloveLens · Grip analysis from a photo of your golf glove · WiggleWing</title>
+  <meta name="description" content="GloveLens reads the wear on your golf glove, scores your grip and gives you drills to fix it. Coming soon to iPhone.">
+  <link rel="icon" href="/design-system/assets/brands/wigglewing/app-icon-studio.svg" type="image/svg+xml">
+  <meta property="og:title" content="GloveLens · Grip analysis from a photo of your golf glove · WiggleWing">
+  <meta property="og:description" content="GloveLens reads the wear on your golf glove, scores your grip and gives you drills to fix it. Coming soon to iPhone.">
+  <meta property="og:image" content="/design-system/assets/brands/wigglewing/mark-main-on-sky.svg">
+  <script>try { var t = localStorage.getItem('ww-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <link rel="stylesheet" href="/design-system/web/css/fonts/wigglewing.css">
+  <link rel="stylesheet" href="/design-system/web/css/fonts/glovelens.css">
+  <link rel="stylesheet" href="/design-system/web/css/tokens.css">
+  <link rel="stylesheet" href="/design-system/web/css/components.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="/js/site.js" defer></script>
+</head>
+<body class="ww-root">
+  <header class="ww-nav ww-nav--material">
+    <nav class="ww-container ww-nav__bar" aria-label="Main">
+      <a class="ww-brand site-lockup" href="/"><span class="site-mark"><img src="/design-system/assets/brands/wigglewing/face-small.svg" alt=""></span>WiggleWing</a>
+      <ul class="ww-nav__links">
+        <li><a href="/" aria-current="page">Apps</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/support/">Support</a></li>
+        <li><a class="ww-btn ww-btn--sm" href="/support/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Everything inside <main> uses the GloveLens brand (data-brand); nav and footer stay WiggleWing. -->
+  <main class="site-product" data-brand="glovelens">
+    <div class="ww-container site-main">
+      <nav class="site-crumbs ww-caption" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/#apps">Apps</a><svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></li>
+          <li><span aria-current="page">GloveLens</span></li>
+        </ol>
+      </nav>
+
+      <section class="ww-split" aria-labelledby="hero-title">
+        <div class="site-hero__copy">
+          <div class="site-product__copy">
+            <div class="site-product__status"><p class="ww-label">iOS · Golf</p><span class="ww-badge">Coming soon</span></div>
+            <h1 class="ww-display-l" id="hero-title">GloveLens</h1>
+            <p class="ww-h3">Scan your glove. Unlock your swing.</p>
+            <p class="ww-body-l ww-measure">Snap a photo of your golf glove. GloveLens reads the wear pattern, scores your grip and shows what it is doing to your swing, with drills to fix it.</p>
+          </div>
+          <div class="ww-row">
+            <a class="ww-btn" href="https://glovelens.com" rel="noopener">Visit glovelens.com <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            <a class="ww-btn ww-btn--secondary" href="#how">How it works</a>
+          </div>
+        </div>
+        <div class="site-product__art">
+          <!-- Replace the launch screen with a screenshot: <div class="site-phone__screen"><img src="..." alt="..."></div> -->
+          <div class="site-phone" role="img" aria-label="GloveLens on iPhone">
+            <div class="site-phone__screen">
+              <span class="ww-app-icon site-product-icon"><svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 22V2l10 5-10 5"/></svg></span>
+              <p class="ww-h3">GloveLens</p>
+              <p class="ww-body-s ww-muted">Scan your glove. Unlock your swing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section" id="features" aria-labelledby="features-title">
+        <div class="site-section__head">
+          <p class="ww-label">01</p>
+          <h2 class="ww-h1" id="features-title">What it does</h2>
+          <p class="ww-body-s">Your glove has been keeping notes on your grip. GloveLens reads them.</p>
+        </div>
+        <div class="ww-grid site-features">
+        <article class="ww-card"><span class="site-feature__icon"><svg class="site-icon site-icon--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></span><h3 class="ww-h3">One photo</h3><p class="ww-body-s">Lay your glove flat and take a picture. No sensors, no swing analyzer, no setup.</p></article>
+        <article class="ww-card"><span class="site-feature__icon"><svg class="site-icon site-icon--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg></span><h3 class="ww-h3">Wear-zone map</h3><p class="ww-body-s">See where your glove is wearing, from palm and heel pad to thumb and fingers, and how hard.</p></article>
+        <article class="ww-card"><span class="site-feature__icon"><svg class="site-icon site-icon--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><h3 class="ww-h3">Grip score</h3><p class="ww-body-s">A score from 0 to 100, so you know where your grip stands at a glance.</p></article>
+        <article class="ww-card"><span class="site-feature__icon"><svg class="site-icon site-icon--lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3 class="ww-h3">Grip faults, ranked</h3><p class="ww-body-s">The faults behind your score, most serious first, and what each one does to your ball flight.</p></article>
+        <article class="ww-card"><span class="site-feature__icon"><svg class="site-icon site-icon--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg></span><h3 class="ww-h3">Drills that fit</h3><p class="ww-body-s">Coaching tuned to your hand, handicap and grip style.</p></article>
+        <article class="ww-card"><span class="site-feature__icon"><svg class="site-icon site-icon--lg" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span><h3 class="ww-h3">Progress over time</h3><p class="ww-body-s">Every report is saved. Scan again later to see whether the drills are working.</p></article>
+        </div>
+      </section>
+
+      <section class="site-section" id="how" aria-labelledby="how-title">
+        <div class="site-section__head">
+          <p class="ww-label">02</p>
+          <h2 class="ww-h1" id="how-title">How it works</h2>
+          <p class="ww-body-s">From glove to grip report in about a minute.</p>
+        </div>
+        <ol class="site-steps">
+        <li><article class="ww-card"><span class="site-step__num" aria-hidden="true">1</span><p class="ww-label">Step 1 of 3</p><h3 class="ww-h3">Photograph your glove</h3><p class="ww-body-s">Palm side up, in good light. Use the camera or pick a photo from your library.</p></article></li>
+        <li><article class="ww-card"><span class="site-step__num" aria-hidden="true">2</span><p class="ww-label">Step 2 of 3</p><h3 class="ww-h3">GloveLens maps the wear</h3><p class="ww-body-s">It reads the friction pattern and matches it to known grip faults.</p></article></li>
+        <li><article class="ww-card"><span class="site-step__num" aria-hidden="true">3</span><p class="ww-label">Step 3 of 3</p><h3 class="ww-h3">Get your grip report</h3><p class="ww-body-s">Your score, wear zones, main fault and the drills to work on, saved to your history.</p></article></li>
+        </ol>
+      </section>
+
+      <section class="site-section" id="faq" aria-labelledby="faq-title">
+        <div class="site-section__head">
+          <p class="ww-label">03</p>
+          <h2 class="ww-h1" id="faq-title">Questions</h2>
+          <p class="ww-body-s">More help is on the <a href="/support/">Support</a> page.</p>
+        </div>
+        <div class="site-list">
+          <details><summary><span>Do I need any special equipment?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">No. Just your phone and the glove you already play in.</p></details>
+          <details><summary><span>What lighting works best for a scan?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Daylight or a bright room. Lay the glove flat, palm up.</p></details>
+          <details><summary><span>Can I use a photo I already took?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Yes. Pick it from your photo library instead of using the camera.</p></details>
+          <details><summary><span>How long does an analysis take?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Usually well under a minute.</p></details>
+          <details><summary><span>How does pricing work?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Each grip report uses one credit. Credits are bought in the app.</p></details>
+          <details><summary><span>When does GloveLens launch?</span><svg class="site-icon site-icon--closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="site-icon site-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></summary><p class="ww-body">Soon. Visit glovelens.com to get an email on launch day.</p></details>
+        </div>
+      </section>
+
+      <section class="ww-card ww-card--accent site-cta" aria-labelledby="cta-title">
+        <div class="ww-stack">
+          <h2 class="ww-h1" id="cta-title">Find out what your glove is telling you.</h2>
+          <p class="ww-body">GloveLens is coming soon to iPhone.</p>
+        </div>
+        <a class="ww-btn" href="https://glovelens.com" rel="noopener">Visit glovelens.com <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="ww-footer">
+    <div class="ww-container ww-footer__row">
+      <div class="site-footer__brand">
+        <a class="ww-brand site-lockup" href="/"><span class="site-mark"><img src="/design-system/assets/brands/wigglewing/face-small.svg" alt=""></span>WiggleWing</a>
+        <p class="ww-label">© 2026 WiggleWing · Indie mobile studio</p>
+      </div>
+      <div class="site-footer__end">
+        <ul class="ww-footer__links">
+          <li><a href="/">Apps</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/support/">Support</a></li>
+          <li><a href="/support/#privacy">Privacy</a></li>
+        </ul>
+        <button class="site-switch" type="button" role="switch" aria-checked="false" data-theme-switch><span class="site-switch__track"><span class="site-switch__thumb"></span></span>Dark mode</button>
+        <a class="ww-madeby" href="https://wigglewing.com"><span class="ww-madeby__mark"><svg viewBox="300 108 200 180" fill="none" stroke="#1c2a22" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path fill="#f2d27a" d="M350,275 C335,245 335,200 355,175 C375,155 430,150 460,165 C485,180 488,225 478,250 C470,265 460,275 452,282"/><path d="M365,178 C358,160 348,148 335,148 C325,148 318,152 316,158 M440,165 C445,140 458,125 475,120"/><circle cx="477" cy="120" r="3" fill="#1c2a22"/><ellipse cx="381" cy="217" rx="5" ry="9" fill="#1c2a22" stroke="none"/><ellipse cx="437" cy="188" rx="4" ry="8" fill="#1c2a22" stroke="none"/><path d="M383,248 C390,262 415,262 425,232"/></svg></span><span class="ww-madeby__text"><span class="ww-madeby__by">Made by</span> <span class="ww-madeby__name">WiggleWing</span></span></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -10,7 +10,7 @@ used by the deterministic content check: live text that contains any of them may
 - Each page has its own URL (/, /about/, /support/) instead of one URL that swaps views in JavaScript.
 - Icons are Lucide SVGs inlined in the page, not Font Awesome. GloveLens uses a golf flag (Lucide has no golfer), GlutenScan wheat, LostPuzzles a puzzle piece.
 - App icon grounds use design-system roles: GloveLens is deep moss with a light glyph (the old light moss failed contrast).
-- GloveLens links to glovelens.com. GlutenScan and LostPuzzles have no sites yet, so they show a "Coming soon" badge and aren't links (live linked them to "#").
+- Each app card links to its own info page (/apps/glovelens/, /apps/glutenscan/, /apps/lostpuzzles/), styled in that app's brand under the studio nav and footer. GloveLens no longer links straight to glovelens.com; its info page does. GlutenScan and LostPuzzles keep their "Coming soon" badge (live linked them to "#").
 - The footer adds the "Made by WiggleWing" badge, which is required on every site.
 - "Privacy" in the footer goes to the privacy FAQ on Support (live linked to "#").
 - Support: the app filter uses chips; FAQ answers are native disclosure rows (plus/minus icon).

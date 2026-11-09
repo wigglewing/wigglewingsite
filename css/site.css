@@ -108,6 +108,40 @@ textarea.ww-input { padding-block: var(--space-3); resize: vertical; min-height:
 .site-toast .site-icon { margin-top: var(--space-0_5); }
 @media (max-width: 600px) { .site-toast { right: var(--space-4); left: var(--space-4); bottom: var(--space-4); } }
 
+/* ---------- app info pages (/apps/<id>/) ---------- */
+/* The studio nav and footer stay WiggleWing. <main data-brand="<id>"> switches every token inside it
+   to that app's brand (design-system/web/css/tokens.css), so the base text styles are re-applied here. */
+.site-product { background: var(--color-background); color: var(--color-text); font-family: var(--font-body); border-block: var(--border); padding-block: var(--space-6) var(--space-20); }
+.site-product .site-main { gap: var(--space-6); }
+.site-product .site-cta { margin-top: var(--space-16); }
+/* The app band already ends in a border; the footer sits right under it. */
+.site-product + .ww-footer { margin-top: 0; border-top: 0; }
+.site-crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.site-crumbs li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.site-crumbs a { display: inline-flex; align-items: center; min-height: var(--min-hit); color: var(--color-text-secondary); }
+.site-crumbs .site-icon { width: var(--icon-sm); height: var(--icon-sm); color: var(--color-text-tertiary); }
+.site-product__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.site-product__copy { display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* Hero art: a phone showing the app's launch screen until real screenshots arrive.
+   GlutenScan has a signature gradient; the other brands use their accent. */
+.site-product__art { background: var(--gradient-scanner, var(--color-accent)); display: grid; place-items: center; padding: var(--space-10) var(--space-6); }
+.site-phone { width: min(240px, 72%); aspect-ratio: 9 / 19.5; border-radius: 44px; border: var(--border); background: var(--color-surface-inverse); padding: var(--space-2); }
+.site-phone__screen { height: 100%; border-radius: 36px; background: var(--color-background); color: var(--color-text); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); padding: var(--space-6); text-align: center; }
+.site-phone__screen img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.site-phone__screen:has(img) { padding: 0; }
+.site-product-icon { width: 96px; display: grid; place-items: center; background: var(--color-primary); color: var(--color-on-primary); }
+.site-product-icon .site-icon { width: 48px; height: 48px; }
+@media (max-width: 600px) { .site-product__art { min-height: 0; padding: var(--space-8) var(--space-4); } }
+
+.site-features { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: var(--space-4); }
+.site-features .ww-card { gap: var(--space-3); }
+.site-feature__icon { width: 52px; height: 52px; border-radius: var(--radius-md); background: var(--color-accent); color: var(--color-on-accent); border: var(--surface-outline); display: grid; place-items: center; }
+.site-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.site-steps .ww-card { gap: var(--space-3); height: 100%; }
+.site-step__num { width: var(--control-h-md); height: var(--control-h-md); border-radius: 50%; display: grid; place-items: center; background: var(--color-primary); color: var(--color-on-primary); font: var(--weight-bold) var(--text-body)/1 var(--font-display); }
+.site-list details > ul { margin: 0; padding: 0 var(--space-5) var(--space-5) var(--space-10); max-width: var(--readable-max); display: flex; flex-direction: column; gap: var(--space-2); }
+
 /* ---------- footer ---------- */
 /* DS footer links are bare text (about 18px tall); give them a full touch target. */
 .ww-footer__links a { display: inline-flex; align-items: center; justify-content: center; min-height: var(--min-hit); min-width: var(--min-hit); }
