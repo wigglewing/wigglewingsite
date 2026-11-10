@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Copies the WiggleWing design system's web assets into ./design-system/.
-// The site vendors these files so Netlify can serve them without a build step.
+// The site vendors these files so the Worker can serve them without a build step.
 //
 //   node tools/sync-ds.mjs            # from ~/projects/designSystem
 //   DS_PATH=/path/to/designSystem node tools/sync-ds.mjs
@@ -17,10 +17,14 @@ const ds = resolve(process.env.DS_PATH || join(homedir(), 'projects/designSystem
 const out = join(root, 'design-system');
 const check = process.argv.includes('--check');
 
+const APPS = ['glovelens', 'glutenscan', 'lostpuzzles'];
 const FILES = [
   'web/css/fonts/wigglewing.css',
   'web/css/brands/wigglewing.css',
   'web/css/components.css',
+  // App info pages (/apps/<id>/): every brand scoped by data-brand, plus each app's fonts.
+  'web/css/tokens.css',
+  ...APPS.map((id) => `web/css/fonts/${id}.css`),
   ...readdirSync(join(ds, 'assets/brands/wigglewing'))
     .filter((f) => f.endsWith('.svg'))
     .map((f) => `assets/brands/wigglewing/${f}`),

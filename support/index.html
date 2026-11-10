@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/design-system/web/css/components.css">
   <link rel="stylesheet" href="/css/site.css">
   <script src="/js/site.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body class="ww-root">
   <header class="ww-nav ww-nav--material">
@@ -53,9 +54,8 @@
       </section>
 
       <section class="ww-card" id="contact" aria-labelledby="contact-title" style="padding: var(--space-10)">
-        <form class="site-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="company" data-contact-form novalidate>
+        <form class="site-form" name="contact" method="POST" action="/api/contact" data-contact-form novalidate>
           <h2 class="ww-h2" id="contact-title">Write to us</h2>
-          <input type="hidden" name="form-name" value="contact">
           <p class="site-visually-hidden"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
           <div class="ww-field">
             <label for="contact-name">Name</label>
@@ -81,7 +81,8 @@
             <textarea class="ww-input" id="contact-message" name="message" rows="5" placeholder="What happened, and what did you expect?"></textarea>
           </div>
           <label class="site-check"><input type="checkbox" name="device-info" value="yes" checked> Include device info</label>
-          <div class="ww-banner ww-banner--danger" role="alert" data-form-failed hidden><strong>Your message didn't send.</strong> Check your connection and try again.</div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAF498_Cz6v1td1ih" data-theme="auto" data-size="flexible" data-action="contact"></div>
+          <div class="ww-banner ww-banner--danger" role="alert" data-form-failed hidden><strong>Your message didn't send.</strong> <span data-form-failed-text>Check your connection and try again.</span></div>
           <button class="ww-btn ww-btn--lg" type="submit">Send message <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></button>
         </form>
       </section>

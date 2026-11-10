@@ -1,0 +1,128 @@
+{
+  "updated": "2026-11-08",
+  "blocked_on": [
+    "Time: wigglewing.com live watch (48h) until 2026-11-10T18:47Z, then ask for G3 (delete Netlify site fabulous-cranachan-4130af)",
+    "Time: wigglewing.com 24h soak ends 2026-11-09T17:51Z",
+    "User (after soak): delete the wigglewing.com DNS zone in Netlify (Domains > wigglewing.com > Delete DNS zone); keep the domain attached to the site"
+  ],
+  "approvals": [
+    "wigglewing.com:G1",
+    "glovelens.com:G1",
+    "blairadventures.com:G1",
+    "wigglewing.com:G2"
+  ],
+  "domains": {
+    "wigglewing.com": {
+      "pilot": true,
+      "step": "live (watch until 2026-11-10T18:47Z)",
+      "registrar": {
+        "name": "Namecheap",
+        "expires": "2027-05-21"
+      },
+      "rollback_ns": [
+        "dns1.p03.nsone.net",
+        "dns2.p03.nsone.net",
+        "dns3.p03.nsone.net",
+        "dns4.p03.nsone.net"
+      ],
+      "host": {
+        "now": "Cloudflare Worker wigglewing-site (custom domains wigglewing.com + www, www 301 to apex, Always Use HTTPS on)",
+        "repo": "wigglewing/wigglewingsite",
+        "forms": "Netlify Forms (contact)",
+        "next": "Worker wigglewing-site (branch cloudflare-worker, uncommitted): static assets + POST /api/contact",
+        "workers_dev": "https://wigglewing-site.wigglewingsite.workers.dev",
+        "turnstile_sitekey": "0x4AAAAAAF498_Cz6v1td1ih (domains: wigglewing.com, workers.dev host); secret in Worker secret TURNSTILE_SECRET",
+        "d1": "wigglewing-contact 577e483c-b5ee-4101-9043-8d75222f8932, table messages (migration 0001 applied remote)",
+        "contact_to": "hello@wigglewing.com (from forms@wigglewing.com, reply-to = sender)",
+        "judge": "2026-11-08: PASS vs live (109/109 deterministic; LLM home/about/support pass)",
+        "cutover_note": "Merge cloudflare-worker to main only at G2: on Netlify the form would POST to a missing /api/contact.",
+        "email_sending": "Workers Paid (user upgraded 2026-11-08). Sending domain wigglewing.com id 9f2b6cea95434e73ac6f3670a1cc7b02: cf-bounce MX/SPF/DKIM auto-added (read-only, Email Routing-managed), status ready. Test send forms@ -> hello@ queued 18:3xZ.",
+        "previous": "Netlify site fabulous-cranachan-4130af (still exists; G3 retires it)",
+        "form_test": "2026-11-08 18:40Z: user's workers.dev test saved (D1 id 1) and emailed to hello@ (emailed=1)",
+        "rollback": "Delete the Worker custom domains, recreate CNAME wigglewing.com and www -> fabulous-cranachan-4130af.netlify.app (DNS-only)"
+      },
+      "mail": "Fastmail: MX in1/in2-smtp.messagingengine.com, SPF include:spf.messagingengine.com, DKIM fm1-3 CNAMEs; DMARC _dmarc TXT v=DMARC1; p=quarantine; (added 2026-11-08; Cloudflare's p=reject duplicate removed)",
+      "cloudflare": {
+        "zone_id": "b75eceb0d6b7a2b51f724ffcf327cde6",
+        "status": "active",
+        "nameservers": [
+          "iris.ns.cloudflare.com",
+          "joaquin.ns.cloudflare.com"
+        ],
+        "activated_on": "2026-11-08T17:51:30Z"
+      }
+    },
+    "glovelens.com": {
+      "step": "dns-active (soak until 2026-11-09T17:55Z)",
+      "registrar": {
+        "name": "Namecheap",
+        "expires": "2027-03-27"
+      },
+      "rollback_ns": [
+        "dns1.p07.nsone.net",
+        "dns2.p07.nsone.net",
+        "dns3.p07.nsone.net",
+        "dns4.p07.nsone.net"
+      ],
+      "host": {
+        "now": "Netlify (site name unknown)",
+        "repo": "blairacuda/gloveScanApp (landing-page/)",
+        "forms": "none (waitlist posts to AWS API Gateway)"
+      },
+      "mail": "Fastmail MX + SPF + DKIM fm1-3, DMARC p=none, plus an Amazon SES MX (feedback-smtp.us-west-2) to explain",
+      "cloudflare": {
+        "zone_id": "7e4f2afb21b31c9511a59c452bc748b3",
+        "status": "active",
+        "nameservers": [
+          "iris.ns.cloudflare.com",
+          "joaquin.ns.cloudflare.com"
+        ],
+        "activated_on": "2026-11-08T17:55:40Z"
+      },
+      "pilot_note": "User chose to start glovelens.com before wigglewing.com's 24h soak ended (2026-11-08)."
+    },
+    "blairadventures.com": {
+      "step": "dns-active (soak until 2026-11-10T18:05Z; keep Netlify DNS zone until then)",
+      "personal_mail": true,
+      "registrar": {
+        "name": "Namecheap",
+        "expires": "2027-12-01"
+      },
+      "rollback_ns": [
+        "dns1.p03.nsone.net",
+        "dns2.p03.nsone.net",
+        "dns3.p03.nsone.net",
+        "dns4.p03.nsone.net"
+      ],
+      "cloudflare": {
+        "zone_id": "934ccefa2b0645db43a492e9ed5f215e",
+        "status": "active",
+        "nameservers": [
+          "iris.ns.cloudflare.com",
+          "joaquin.ns.cloudflare.com"
+        ],
+        "activated_on": "2026-11-08T18:05:07Z"
+      },
+      "host": {
+        "now": "Netlify site blairadventures.netlify.app, Vue CLI build to dist/",
+        "repo": "blairacuda/blairAdventures",
+        "forms": "none"
+      },
+      "mail": "Fastmail (user's primary inbox): MX, SPF ~all, DMARC p=quarantine, DKIM default + fm1-3, CalDAV/CardDAV TXT",
+      "notes": [
+        "Site fetches https://content.blairadventures.com (Directus) which has no DNS record: already broken, not a migration issue. Ask user.",
+        "Primary personal email domain: migrate last, after wigglewing and glovelens are clean."
+      ],
+      "preflight": {
+        "dnssec": "none at registry (safe to switch NS)",
+        "extra_names_probed": "~60 common subdomains, none found beyond inventory",
+        "needs_user": "full record list from Netlify DNS panel to rule out unknown subdomains",
+        "netlify_export": "records/blairadventures.com.netlify-export.csv: 21 records. All 18 record sets match Cloudflare. Added 5 content.* records that probing missed. Apex/www now CNAME (flattened) to blairadventures.netlify.app, DNS-only."
+      },
+      "mail_tests": "2026-11-08 18:08Z: both directions work; Gmail headers show SPF pass, DKIM pass (d=blairadventures.com s=fm1), DMARC pass (p=QUARANTINE)"
+    }
+  },
+  "deferred": [
+    "G4 registrar transfer for all three domains: user chose to do it later (2026-11-08). Do not prompt for it until DNS + hosting are done."
+  ]
+}

@@ -1,29 +1,21 @@
 // Loads one page in one configuration and collects what the checks and the LLM judge need.
 import AxeBuilder from '@axe-core/playwright';
+import { stubTurnstile } from './turnstile-stub.mjs';
 
 export const VIEWPORTS = {
   desktop: { viewport: { width: 1440, height: 900 } },
   mobile: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
 };
 
-// The live site is a single-page app that remembers the current view in localStorage.
-// The rebuilt site has one URL per page and remembers the theme in localStorage.
-export const TARGETS = {
-  live: {
-    url: (base) => base,
-    init: (page) => ({ key: 'ww-site-page', value: page }),
-    ready: '#root h1',
-    async applyTheme(p, theme) {
-      if (theme === 'dark') { await p.getByRole('switch').first().click(); await p.waitForTimeout(300); }
-    },
-  },
-  local: {
-    url: (base, page) => base + ({ home: '/', about: '/about/', support: '/support/' }[page]),
-    init: (page, theme) => ({ key: 'ww-theme', value: theme }),
-    ready: 'main h1',
-    async applyTheme() {},
-  },
+// Both sides are the page-per-URL rebuild (live since PR #1, 2026-11-08). The theme is remembered in localStorage.
+// (The old single-page live site, which needed the #root/ww-site-page handling, is gone.)
+const PAGES_SITE = {
+  url: (base, page) => base.replace(/\/$/, '') + ({ home: '/', about: '/about/', support: '/support/' }[page]),
+  init: (page, theme) => ({ key: 'ww-theme', value: theme }),
+  ready: 'main h1',
+  async applyTheme() {},
 };
+export const TARGETS = { live: PAGES_SITE, local: PAGES_SITE };
 
 function pageProbe() {
   const visible = (el) => {
@@ -71,6 +63,7 @@ export async function capture(browser, { target, base, page, viewport, theme, ax
   const t = TARGETS[target];
   const context = await browser.newContext({ ...VIEWPORTS[viewport], colorScheme: 'light', deviceScaleFactor: 1, reducedMotion: 'reduce' });
   const init = t.init(page, theme);
+  await stubTurnstile(context);
   await context.addInitScript(({ key, value }) => { try { if (value) localStorage.setItem(key, value); } catch {} }, init);
 
   const p = await context.newPage();

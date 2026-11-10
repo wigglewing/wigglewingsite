@@ -1,0 +1,56 @@
+{
+  "source": "dig @dns1.p01.nsone.net over common names, 2026-11-08 (no zone export; confirm against Netlify DNS panel)",
+  "records": [
+    {
+      "type": "CNAME",
+      "name": "@",
+      "content": "fabulous-cranachan-4130af.netlify.app",
+      "proxied": false,
+      "note": "flattened; replaces Netlify apex A records 13.52.188.95/52.52.192.191"
+    },
+    {
+      "type": "CNAME",
+      "name": "www",
+      "content": "fabulous-cranachan-4130af.netlify.app",
+      "proxied": false
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "content": "in1-smtp.messagingengine.com",
+      "priority": 10
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "content": "in2-smtp.messagingengine.com",
+      "priority": 20
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "content": "v=spf1 include:spf.messagingengine.com ?all"
+    },
+    {
+      "type": "CNAME",
+      "name": "fm1._domainkey",
+      "content": "fm1.wigglewing.com.dkim.fmhosted.com",
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "fm2._domainkey",
+      "content": "fm2.wigglewing.com.dkim.fmhosted.com",
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "fm3._domainkey",
+      "content": "fm3.wigglewing.com.dkim.fmhosted.com",
+      "proxied": false
+    }
+  ],
+  "notes": [
+    "No DMARC record. Suggest adding _dmarc TXT v=DMARC1; p=none; after cutover (not part of parity)."
+  ]
+}

@@ -99,7 +99,8 @@ export function sourceCompliance(siteRoot, dsPath) {
     }
     if (rel.endsWith('.html')) {
       for (const m of src.matchAll(/class="([^"]+)"/g)) for (const c of m[1].split(/\s+/)) if (c.startsWith('ww-') && !dsClasses.has(c)) unknownClasses.push(`${rel} .${c}`);
-      for (const m of src.matchAll(/<script[^>]+src="(https?:[^"]+)"/g)) external.push(`${rel} ${m[1]}`);
+      // Cloudflare Turnstile (the contact form's bot check) is the one allowed third-party script.
+      for (const m of src.matchAll(/<script[^>]+src="(https?:[^"]+)"/g)) if (!m[1].startsWith('https://challenges.cloudflare.com/turnstile/')) external.push(`${rel} ${m[1]}`);
     }
     for (const m of src.matchAll(/--(ww-ink|ww-chalk|ww-moss|ww-sky|ww-butter|bg-page|fg-1|fg-2|surface-card|border-color|hover-fill)\b/g)) legacy.push(`${rel} --${m[1]}`);
   }

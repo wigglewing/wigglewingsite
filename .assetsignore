@@ -1,0 +1,11 @@
+# Never publish tooling or config as static files.
+.*
+tools
+ops
+worker
+migrations
+node_modules
+wrangler.jsonc
+package.json
+package-lock.json
+README.md

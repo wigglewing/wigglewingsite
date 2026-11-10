@@ -1,0 +1,16 @@
+{"type": "A", "name": "blairadventures.com", "content": "13.52.188.95", "proxied": false, "ttl": 1}
+{"type": "A", "name": "blairadventures.com", "content": "52.52.192.191", "proxied": false, "ttl": 1}
+{"type": "A", "name": "www.blairadventures.com", "content": "13.52.188.95", "proxied": false, "ttl": 1}
+{"type": "A", "name": "www.blairadventures.com", "content": "52.52.192.191", "proxied": false, "ttl": 1}
+{"type": "MX", "name": "blairadventures.com", "content": "in1-smtp.messagingengine.com", "priority": 10, "ttl": 1}
+{"type": "MX", "name": "blairadventures.com", "content": "in2-smtp.messagingengine.com", "priority": 20, "ttl": 1}
+{"type": "TXT", "name": "blairadventures.com", "content": "\"v=spf1 include:spf.messagingengine.com ~all\"", "ttl": 1}
+{"type": "TXT", "name": "_dmarc.blairadventures.com", "content": "\"v=DMARC1; p=quarantine; rua=mailto:chris@blairadventures.com; pct=100\"", "ttl": 1}
+{"type": "TXT", "name": "default._domainkey.blairadventures.com", "content": "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtXH3JVDqF+SWmhrUJcamVwwGPinXffagaxvDBtUGyCqXHCU+UCJwZqVHwbqtpfg2pjcqbE/nGLW3x0qOKO4/R3kr3yc7OfRDA0O/1VHjUM7vauXmgoQnsNO01rFmK7U/XFouDrIuxHxIiG0E3dOCxbLndmJYeQhQSeBLIEgDadTZvlOFQpMCe3zUFdfg/AH6tgVCFk9qw+R4rkrlFlW40OaNYYyUu7yjFoonMmGikToSHuxQsQ/G/zkK/lEUVBVsp2lsB+p/YsHaN4Zh8QHt5YV+4SEdz92g1uNuPMZxc/MVm/Ob4AgEosZv7VJ3NQLiv7Io7ZSRzaMVSKEB6EkmYwIDAQAB;", "ttl": 1}
+{"type": "CNAME", "name": "fm1._domainkey.blairadventures.com", "content": "fm1.blairadventures.com.dkim.fmhosted.com", "proxied": false, "ttl": 1}
+{"type": "CNAME", "name": "fm2._domainkey.blairadventures.com", "content": "fm2.blairadventures.com.dkim.fmhosted.com", "proxied": false, "ttl": 1}
+{"type": "CNAME", "name": "fm3._domainkey.blairadventures.com", "content": "fm3.blairadventures.com.dkim.fmhosted.com", "proxied": false, "ttl": 1}
+{"type": "TXT", "name": "_carddav._tcp.blairadventures.com", "content": "\"path=/\"", "ttl": 1}
+{"type": "TXT", "name": "_carddavs._tcp.blairadventures.com", "content": "\"path=/\"", "ttl": 1}
+{"type": "TXT", "name": "_caldav._tcp.blairadventures.com", "content": "\"path=/\"", "ttl": 1}
+{"type": "TXT", "name": "_caldavs._tcp.blairadventures.com", "content": "\"path=/\"", "ttl": 1}
